@@ -27,6 +27,8 @@ def main(args):
             for tokenid in tokens:
                 if tokenid <= args.max_tokenid:
                     entries_pool.append(holder)
+                    if args.equal_chance:
+                        break
                 else:
                     if args.verbose:
                         stderr.write(f'Skipping tokenId {tokenid} of holder {holder}\n')
@@ -49,6 +51,7 @@ if __name__ == '__main__':
     parser.add_argument("--num-shuffles", type=int, required=True)
     parser.add_argument("-s" ,"--snapshot-file", type=str, required=True)
     parser.add_argument("-v" ,"--verbose", action='store_true')
+    parser.add_argument("-e" ,"--equal-chance", action='store_true')
 
     args = parser.parse_args()
     try:
